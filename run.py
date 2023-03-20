@@ -34,7 +34,7 @@ def search_book() -> None:
     found_books = [book for book in books if search_word in (book.title, book.author)]
     if found_books:
         for book in found_books:
-            print_details(book)
+            _print_details(book)
     else:
         print("No book found!")
         
@@ -42,10 +42,10 @@ def search_book() -> None:
 nbook=(book for book in books)
 def next_book() -> None:
     logger.info('Listing next book...')
-    print_details(next(nbook))
+    _print_details(next(nbook))
     
 
-def print_details(book):        
+def _print_details(book):        
     print(
 f"""******************************Book Details******************************
 Title: {book.title}
