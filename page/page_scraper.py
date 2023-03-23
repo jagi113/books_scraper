@@ -1,11 +1,11 @@
 from bs4 import BeautifulSoup
-import logging
+from utils.logger import get_logger
 
 from book.book import Book
 from locators.pageLocator import PageLocator
 
 
-logger = logging.getLogger('scraping.page_scraper')
+logger = get_logger('scraping.page_scraper')
 
 
 class PageScraper:

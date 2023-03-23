@@ -46,7 +46,7 @@ def get_books():
     logger.info(f"Books read in {time.time() - loading_time}")
     return books
 
-logger = get_logger()
+logger = get_logger("scraper")
     
 if __name__ == "__main__":
     books = get_books()

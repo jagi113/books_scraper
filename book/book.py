@@ -1,10 +1,10 @@
 import re
-import logging
+from utils.logger import get_logger
 
 from locators.bookLocator import BookLocator
 
 
-logger = logging.getLogger('scraping.book')
+logger = get_logger('scraping.book')
 
 
 class Book:

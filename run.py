@@ -1,9 +1,9 @@
 from text_unidecode import unidecode
-import logging
+from utils.logger import get_logger
 
 from app import get_books
 
-logger = logging.getLogger('scraping.menu')
+logger = get_logger('scraping.menu')
 
 books=get_books()
 
