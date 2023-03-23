@@ -33,7 +33,10 @@ class Book:
     @property
     def author(self) -> str:
         logger.debug(f'Finding book author using locator: `{BookLocator.AUTHOR}`.')
-        author = self.book.select_one(BookLocator.AUTHOR).text.strip()
+        try:
+            author = self.book.select_one(BookLocator.AUTHOR).text.strip()
+        except:
+            author = None
         logger.debug(f'Found book author: `{author}`.')
         return author
 

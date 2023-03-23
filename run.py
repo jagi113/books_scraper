@@ -1,9 +1,11 @@
 from text_unidecode import unidecode
 import logging
 
-from app import books
+from app import get_books
 
 logger = logging.getLogger('scraping.menu')
+
+books=get_books()
 
 def print_by_title() -> None:
     logger.info('Listing books by title...')
@@ -67,6 +69,7 @@ choices: dict = {
 
 
 def main() -> None:
+
     while True:
         choice = input("""
 Choose an order in which you want to present scraped books:
