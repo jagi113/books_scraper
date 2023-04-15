@@ -1,10 +1,9 @@
 import re
-from utils.logger import get_logger
+from unidecode import unidecode
+from utils.logger import logger
 
 from locators.bookLocator import BookLocator
 
-
-logger = get_logger('scraping.book')
 
 
 class Book:
@@ -21,6 +20,14 @@ class Book:
         title = self.book.select_one(BookLocator.TITLE).string.strip()
         logger.debug(f'Found book name: `{title}`.')
         return title
+    
+    @property
+    def slug(self) -> str:
+        logger.debug('Creating slug from the title')
+        title = unidecode(self.title)
+        slug = re.sub(r'\W+', '-', title.lower())
+        logger.debug(f'Slug of the title: `{self.title}` is `{slug}`.')
+        return slug
 
     @property
     def url(self) -> str:
@@ -58,7 +65,9 @@ class Book:
     @property
     def price(self) -> float:
         logger.debug(f'Finding book price using locator: `{BookLocator.PRICE}`.')
-        price_str = self.book.select_one(BookLocator.PRICE).string
+        price_str = self.book.select_one(BookLocator.PRICE).text
+        if not price_str:
+            return None
         logger.debug(f'Found book price tag: `{price_str}`.')
         price_pattern = '([0-9]+,[0-9]+) €'
         price = float(re.search(price_pattern, price_str)[1].replace(',', '.'))

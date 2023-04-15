@@ -4,7 +4,7 @@ import async_timeout
 import time
 import requests
 
-from utils.logger import get_logger
+from utils.logger import logger
 from page.page_scraper import PageScraper
 
 async def fetch_page(session, url, page):      # This is coroutine function (it must be wraped to await)
@@ -19,17 +19,18 @@ async def get_multiple_pages(loop, *urls):      # Main function
         grouped_tasks = asyncio.gather(*tasks)      # gathers all fetch requests and calls them
         return await grouped_tasks
 
-
-def get_books():
+    #startpage = 0
+    #end_page = 5
+    #end_page:int = PageScraper(requests.get('https://www.pantarhei.sk/knihy?p=1').content).page_count()
     
-    logger.info('Loading books list...')
+    
+def get_books(start_page:int, end_page:int):
+    
+    logger.info(f'Loading books from pages "{start_page} - {end_page}')
 
-    page_count = 5
-    #page_count:int = PageScraper(requests.get('https://www.pantarhei.sk/knihy?p=1').content).page_count()
-
-    urls = [(f"https://www.pantarhei.sk/knihy?p={page+1}", page+1) 
+    urls = [(f"https://www.pantarhei.sk/knihy?p={page}", page) 
             for page 
-            in range(page_count)]   
+            in range(start_page, end_page)]   
 
     loop = asyncio.get_event_loop()
     start_time = time.time()
@@ -46,7 +47,7 @@ def get_books():
     logger.info(f"Books read in {time.time() - loading_time}")
     return books
 
-logger = get_logger("scraper")
+
     
 if __name__ == "__main__":
     books = get_books()

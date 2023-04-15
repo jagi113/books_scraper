@@ -4,5 +4,5 @@ class BookLocator:
     AUTHOR = 'div[itemprop="author"]'
     DESCRIPTION = 'div.description'
     STATUS = 'div.status-wrap span.status'
-    PRICE = 'div.price-box span.price span.price-wrapper'
+    PRICE = 'div.price-box span.price'
     IMAGE = 'img'

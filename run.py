@@ -1,11 +1,9 @@
 from text_unidecode import unidecode
-from utils.logger import get_logger
+from utils.logger import logger
 
 from app import get_books
 
-logger = get_logger('scraping.menu')
-
-books=get_books()
+books=get_books(start_page = 0, end_page = 5)
 
 def print_by_title() -> None:
     logger.info('Listing books by title...')
