@@ -27,9 +27,9 @@ console_log.setFormatter(formatter)
 logger.addHandler(console_log)
 
 # Create file handler
-file_log = logging.FileHandler(log_file, mode='a')
+file_log = logging.FileHandler(log_file, mode="a")
 file_log.setLevel(logging.DEBUG)
 # Add formatter to file handler
 file_log.setFormatter(formatter)
-    # Add file handler to logger
+# Add file handler to logger
 logger.addHandler(file_log)

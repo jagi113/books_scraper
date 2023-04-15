@@ -1,6 +1,7 @@
 import psycopg2
 from utils.logger import logger
 
+
 class Database:
     def __init__(self, config):
         self.config = config
@@ -8,7 +9,6 @@ class Database:
 
     def connect(self):
         self.connection = psycopg2.connect(self.config)
-
 
     def disconnect(self):
         if self.connection:
@@ -21,7 +21,6 @@ class Database:
                 """INSERT INTO books(slug, title, author, url, price, image, status, description) 
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s) 
                 ON CONFLICT DO NOTHING""",
-                (books)
+                (books),
             )
         self.connection.commit()
-        

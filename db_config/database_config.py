@@ -1,8 +1,8 @@
 import configparser
 
 
-def get_database_config(filename='database.ini', section='postgresql'):
-    config_file_path = 'db_config/' + filename
+def get_database_config(filename="database.ini", section="postgresql"):
+    config_file_path = "db_config/" + filename
     # create a parser
     parser = configparser.ConfigParser()
     # read config file
@@ -15,12 +15,12 @@ def get_database_config(filename='database.ini', section='postgresql'):
         # Loop in the list
         for param in params:
             # Join key and value to string
-            db_conn_string = (
-                f'{db_conn_string} {param[0]} = {param[1]}')
+            db_conn_string = f"{db_conn_string} {param[0]} = {param[1]}"
     else:
-        raise Exception(f'Section {section} not found in {filename} file')
+        raise Exception(f"Section {section} not found in {filename} file")
 
     return db_conn_string
+
 
 if __name__ == "__main__":
     print(get_database_config())

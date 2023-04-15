@@ -57,5 +57,6 @@ def main() -> None:
         # Disconnect database
         database.disconnect()
 
+
 if __name__ == "__main__":
     main()
