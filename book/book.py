@@ -18,7 +18,7 @@ class Book:
     @property
     def title(self) -> str:
         logger.debug(f"Finding book name using locator: `{BookLocator.TITLE}`.")
-        title = self.book.select_one(BookLocator.TITLE).string.strip()
+        title = self.book.select_one(BookLocator.TITLE).text.strip()
         logger.debug(f"Found book name: `{title}`.")
         return title
 
@@ -44,7 +44,7 @@ class Book:
         try:
             author = self.book.select_one(BookLocator.AUTHOR).text.strip()
         except:
-            author = None
+            author = "neuvedený"
         logger.debug(f"Found book author: `{author}`.")
         return author
 
@@ -53,7 +53,7 @@ class Book:
         logger.debug(
             f"Finding book description using locator: `{BookLocator.DESCRIPTION}`."
         )
-        description = self.book.select_one(BookLocator.DESCRIPTION).string.strip()
+        description = self.book.select_one(BookLocator.DESCRIPTION).text.strip()
         logger.debug(f"Found book description: `{description[:15]}`.")
         return description
 

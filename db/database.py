@@ -18,7 +18,7 @@ class Database:
     def insert_books(self, books):
         with self.connection.cursor() as cursor:
             cursor.executemany(
-                """INSERT INTO books(slug, title, author, url, price, image, status, description) 
+                """INSERT INTO books_book(slug, title, author, url, price, image, status, description) 
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s) 
                 ON CONFLICT DO NOTHING""",
                 (books),

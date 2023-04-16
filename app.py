@@ -30,7 +30,7 @@ async def get_multiple_pages(loop, *urls):  # Main function
 
 def get_books(start_page: int, end_page: int):
     """Scrapes page content from start_page to end_page and creates Book objects"""
-    logger.info(f'Loading books from pages "{start_page} - {end_page}')
+    logger.info(f'Loading books from pages "{start_page} - {end_page}"')
 
     urls = [
         (f"https://www.pantarhei.sk/knihy?p={page}", page)
